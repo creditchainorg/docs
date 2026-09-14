@@ -1,0 +1,31 @@
+---
+title: CreditChain Docs
+description: Build on, run and validate the CreditChain network.
+template: splash
+hero:
+  tagline: An EVM-compatible proof-of-stake chain for AI-native finance. Everything here is written to be checked against the running network.
+  actions:
+    - text: Connect to Argos testnet
+      link: /networks/argos-testnet/
+      icon: right-arrow
+    - text: Run a node
+      link: /nodes/run-a-node/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<Card title="Networks" icon="setting">
+		Chain ids, endpoints and genesis hashes for every CreditChain network. [Argos testnet →](/networks/argos-testnet/)
+	</Card>
+	<Card title="Run a node" icon="laptop">
+		An execution client and a beacon node, and how they find the network. [Start →](/nodes/run-a-node/)
+	</Card>
+	<Card title="Validators" icon="approve-check">
+		What staking commits you to, and the one decision that cannot be undone. [Read →](/validators/overview/)
+	</Card>
+	<Card title="Developers" icon="seti:code-search">
+		Connect a wallet, call JSON-RPC, deploy a contract. [Connect →](/developers/connect/)
+	</Card>
+</CardGrid>

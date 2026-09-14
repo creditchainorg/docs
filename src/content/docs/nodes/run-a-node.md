@@ -1,0 +1,59 @@
+---
+title: Run a node
+description: Run an execution client and a beacon node on Argos testnet.
+---
+
+A CreditChain node is two processes: **creditchain** (execution) and **creditbeacon** (consensus),
+joined by an authenticated Engine API connection.
+
+:::caution[Release status]
+The built-in `argos-testnet` network below ships in the next creditchain and creditbeacon releases.
+Until those releases are published, these commands will not recognise the network name.
+:::
+
+## 1. A shared secret for the Engine API
+
+```sh
+mkdir -p ~/creditchain && openssl rand -hex 32 > ~/creditchain/jwt.hex
+```
+
+## 2. Execution client
+
+```sh
+creditchaind node --chain argos-testnet \
+  --datadir ~/creditchain/el \
+  --authrpc.jwtsecret ~/creditchain/jwt.hex \
+  --http --http.api eth,net,web3
+```
+
+No genesis file and no peer list: the chain and its bootstrap peers are built into the client.
+
+## 3. Beacon node
+
+```sh
+creditbeacon bn --network argos-testnet \
+  --datadir ~/creditchain/cl \
+  --execution-endpoint http://127.0.0.1:8551 \
+  --execution-jwt ~/creditchain/jwt.hex
+```
+
+## 4. Check it is on the right chain
+
+```sh
+curl -s http://127.0.0.1:8545 -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"eth_getBlockByNumber","params":["0x0",false]}'
+```
+
+The `hash` must be `0xcbb0f12e…42c9` (see [Argos testnet](/networks/argos-testnet/)).
+
+## Ports
+
+| Port | Protocol | Purpose | Expose publicly? |
+|---|---|---|---|
+| 30303 | TCP + UDP | execution peer-to-peer | yes, if you want inbound peers |
+| 9000 | TCP + UDP | beacon peer-to-peer and discovery | yes, if you want inbound peers |
+| 9001 | UDP | beacon QUIC transport (`--port` + 1 by default) | yes, if you want inbound peers |
+| 8551 | TCP | Engine API | **never** |
+| 8545 | TCP | JSON-RPC | only behind your own access control |
+
+Discovery uses UDP. If you forward a port, forward both TCP and UDP.
