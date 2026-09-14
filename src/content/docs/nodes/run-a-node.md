@@ -7,8 +7,9 @@ A CreditChain node is two processes: **creditchain** (execution) and **creditbea
 joined by an authenticated Engine API connection.
 
 :::caution[Release status]
-The built-in `argos-testnet` network below ships in the next creditchain and creditbeacon releases.
-Until those releases are published, these commands will not recognise the network name.
+The built-in `argos-testnet` network below ships in the next creditchain and creditbeacon releases,
+and needs a public checkpoint endpoint that is not yet published. These steps have been run end to
+end against Argos from outside the network's own sites; they will work for you once both are out.
 :::
 
 ## 1. A shared secret for the Engine API
@@ -34,8 +35,16 @@ No genesis file and no peer list: the chain and its bootstrap peers are built in
 creditbeacon bn --network argos-testnet \
   --datadir ~/creditchain/cl \
   --execution-endpoint http://127.0.0.1:8551 \
-  --execution-jwt ~/creditchain/jwt.hex
+  --execution-jwt ~/creditchain/jwt.hex \
+  --checkpoint-sync-url <checkpoint endpoint>
 ```
+
+**A checkpoint-sync URL is required.** A beacon node that starts from genesis cannot join Argos
+today: the network uses PeerDAS, and no reachable peer currently holds data for the first epochs,
+so syncing from slot 0 waits indefinitely. Starting from a recent finalized checkpoint avoids this —
+a new node reaches the head in seconds and the execution client then syncs behind it.
+
+A public Argos checkpoint endpoint is being set up; its address will be published on this page.
 
 ## 4. Check it is on the right chain
 
