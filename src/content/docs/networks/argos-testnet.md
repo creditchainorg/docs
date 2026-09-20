@@ -13,7 +13,7 @@ Test CCC has no monetary value.
 | Network name | `argos-testnet` |
 | Chain id | `2026042404` (`0x78c2f424`) |
 | Currency | CCC (test) |
-| Consensus | Proof of stake, 6-second slots, 32 slots per epoch |
+| Consensus | Proof of stake, 12-second slots, 32 slots per epoch (6 min 24 s) |
 | Genesis block hash | `0xcbb0f12e2a67c07a59218baefb4eb8211d9867b52b716fb190e4df12628042c9` |
 | Genesis validators root | `0x24097cf8bdc6db5cc8500ff0895a08365e8c2de8790e5bafc118177d3f571d75` |
 
@@ -44,6 +44,5 @@ tested" can be checked by comparing the two chains. Argos is first; Knossos is n
 
 ## Mainnet
 
-Argos mainnet has not launched. Its genesis allocation and withdrawal addresses are created
-by an offline key ceremony, and the clients refuse to start `--chain argos` until that genesis
-is published.
+Argos mainnet has not launched — see [mainnet](/networks/mainnet/) for what has to be true
+before it does, and how to check the chain you join is the one that was announced.
