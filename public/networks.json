@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-06",
+  "publisher": "CreditChain",
+  "documentation": "https://docs.creditchain.org/developers/network-list/",
+  "verification": "Before trusting any RPC listed here, check eth_chainId and the genesis block hash against chainId and genesisHash. A network whose status is not active must not be offered as connectable.",
+  "networks": [
+    {
+      "id": "argos-testnet",
+      "name": "CreditChain Testnet",
+      "release": "Argos",
+      "status": "active",
+      "testnet": true,
+      "featured": true,
+      "chainId": 2026042404,
+      "chainIdHex": "0x78c2f424",
+      "genesisHash": "0xcbb0f12e2a67c07a59218baefb4eb8211d9867b52b716fb190e4df12628042c9",
+      "nativeCurrency": { "name": "CreditChain Coin", "symbol": "CCC", "decimals": 18 },
+      "rpc": ["https://testnet.creditchain.org", "https://argos.creditchain.org"],
+      "ws": [],
+      "explorer": {
+        "name": "CreditChain Explorer",
+        "url": "https://scan.creditchain.org/?net=testnet",
+        "tx": "https://scan.creditchain.org/tx/{hash}?net=testnet",
+        "address": "https://scan.creditchain.org/address/{address}?net=testnet",
+        "block": "https://scan.creditchain.org/blocks/{number}?net=testnet"
+      },
+      "faucet": "https://faucet.creditchain.org/testnet",
+      "docs": "https://docs.creditchain.org/networks/argos-testnet/"
+    },
+    {
+      "id": "argos",
+      "name": "CreditChain Mainnet",
+      "release": "Argos",
+      "status": "planned",
+      "testnet": false,
+      "featured": true,
+      "chainId": 2026042405,
+      "chainIdHex": "0x78c2f425",
+      "genesisHash": null,
+      "nativeCurrency": { "name": "CreditChain Coin", "symbol": "CCC", "decimals": 18 },
+      "rpc": [],
+      "ws": [],
+      "explorer": null,
+      "faucet": null,
+      "docs": "https://docs.creditchain.org/networks/mainnet/",
+      "notice": "Not launched. No genesis exists yet. Show this network as unavailable and never offer it as connectable."
+    },
+    {
+      "id": "devnet",
+      "name": "CreditChain Devnet",
+      "release": null,
+      "status": "retired",
+      "testnet": true,
+      "featured": false,
+      "chainId": 2026042403,
+      "chainIdHex": "0x78c2f423",
+      "genesisHash": null,
+      "nativeCurrency": { "name": "CreditChain Coin", "symbol": "CCC", "decimals": 18 },
+      "rpc": [],
+      "ws": [],
+      "explorer": null,
+      "faucet": null,
+      "docs": null,
+      "notice": "Retired in September 2026; its endpoints no longer serve a chain. Remove it from wallets."
+    }
+  ]
+}
