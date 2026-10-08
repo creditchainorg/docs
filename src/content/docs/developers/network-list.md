@@ -31,6 +31,7 @@ Each entry in `networks` describes one network:
 | `explorer` | Explorer home plus link templates for `{hash}`, `{address}` and `{number}`. |
 | `faucet` | Where to request test coins, on test networks only. |
 | `notice` | Shown to users verbatim when a network is not active. |
+| `governance` | Optional. The network's governance contracts, each with `label`, `kind` (`timelock`, `staking-reserve`, `safe` or `vesting`) and `address`. A wallet should decode and sign multisig transactions that call these, and refuse calldata for anything else. Absent until a network publishes it; mainnet's are published at launch. |
 
 ## Check before you trust
 
