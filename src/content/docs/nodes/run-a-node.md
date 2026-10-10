@@ -8,23 +8,29 @@ joined by an authenticated Engine API connection.
 
 :::caution[Release status]
 The built-in `argos-testnet` network ships in
-[creditchain v2.4.0-argos-testnet](https://github.com/creditchainorg/creditchain/releases/tag/v2.4.0-argos-testnet)
+[creditchain v2.5.0-argos-testnet](https://github.com/creditchainorg/creditchain/releases/tag/v2.5.0-argos-testnet)
 and
-[creditbeacon v2.4.0-argos-testnet](https://github.com/creditchainorg/creditbeacon/releases/tag/v2.4.0-argos-testnet).
+[creditbeacon v2.5.0-argos-testnet](https://github.com/creditchainorg/creditbeacon/releases/tag/v2.5.0-argos-testnet).
 Joining also needs a public checkpoint endpoint, which is not yet published. These steps have been
 run end to end against Argos from outside the network's own sites.
+
+v2.5.0 is a security release: the consensus client is based on Lighthouse v8.2.3 (v8.2.0–v8.2.2 are
+high-priority security releases) and both clients carry patched dependencies. Every Argos node runs
+it. If you run v2.4.0, upgrade; if you start the beacon node with your own `--testnet-dir`, its
+`config.yaml` must say `SECONDS_PER_SLOT: 12` — v2.5.0 refuses a value that disagrees with
+`SLOT_DURATION_MS: 12000`.
 :::
 
 ## 0. Build the clients
 
-Both releases are source releases. creditchain needs Rust 1.95 or newer; see each repository's
-README for other build prerequisites.
+Both releases are source releases. creditchain needs Rust 1.95 or newer and creditbeacon 1.90 or
+newer; see each repository's README for other build prerequisites.
 
 ```sh
-git clone --branch v2.4.0-argos-testnet https://github.com/creditchainorg/creditchain
+git clone --branch v2.5.0-argos-testnet https://github.com/creditchainorg/creditchain
 (cd creditchain && cargo build --release --bin creditchaind)
 
-git clone --branch v2.4.0-argos-testnet https://github.com/creditchainorg/creditbeacon
+git clone --branch v2.5.0-argos-testnet https://github.com/creditchainorg/creditbeacon
 (cd creditbeacon && cargo build --release --bin creditbeacon)
 ```
 
